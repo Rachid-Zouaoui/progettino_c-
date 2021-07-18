@@ -117,7 +117,27 @@ Dispositivo* createDispositivo (int input){
 			cin >> schermo;
 			dispositivo = new Monitor(serial, nome, caratteristiche, stringToAzienda(azienda), prezzo, colore, pollici, casse, schermo);
 			break;
-		default:
+		case 5:
+			cout<<"Inserire il seriale: "<< endl;
+			cin >> serial;
+			cout<<"Inserire il nome: "<< endl;
+			cin >> nome;
+			cout<<"Inserire le caratteristiche: "<< endl;
+			cin >> caratteristiche;
+			cout<<"Inserire Azienda: 1--> apple, 2-->hp, 3-->microsoft, 4-->dell, 5--> asus, 6-->lenovo, 7-->huwawey "<< endl;
+			cin >> azienda;
+			cout<<"Inserire Prezzo: "<< endl;
+			cin >> prezzo;
+			cout<<"Inserire pollici schermo: "<< endl;
+			cin >> pollici;
+			cout<<"Inserire Colore: "<< endl;
+			cin >> colore;
+			cout<<"Inserire Sistema operativo: "<< endl;
+			cin >> so;
+			Notebook* notebook = new Notebook(serial, nome, caratteristiche, stringToAzienda(azienda), prezzo, colore, pollici, 1, so);
+			dispositivo = new DueInUno(notebook);
+			break;
+		defualt:
 			return dispositivo;
 			break;
 	}
@@ -132,13 +152,15 @@ int main() {
 		string x1 = "Smatphone --> 2";
 		string x2 = "Notebook --> 3";
 		string x3 = "Monitor --> 4";
-		string x4 = "Termina il programma --> 5";
+		string x4 = "DueInUno --> 5";
+		string x5 = "Termina e visualizza inventario --> 6";
 		cout << "Quale dispositivo desideri inserire? Scegli il numero corrispondente: " << endl;
 		cout << x << endl;
 		cout << x1 << endl;
 		cout << x2 << endl;
 		cout << x3 << endl;
 		cout << x4 << endl;
+		cout << x5 << endl;
 		cin >> input;
 
 
@@ -154,9 +176,12 @@ int main() {
 		}else if(input == 4){
 			Dispositivo *adispositivo = createDispositivo(4);
 			dataSet.insert(dataSet.begin(), adispositivo);
+		}else if(input == 5){
+			Dispositivo *adispositivo = createDispositivo(5);
+			dataSet.insert(dataSet.begin(), adispositivo);
 		}
 
-	}while(input!=5);
+	}while(input!=6);
 	cout << "Ecco gli elementi inseriti nel tuo inventario: " << endl;
 	for(Dispositivo *disp : dataSet){
 		cout<< disp->toString("") <<endl;
