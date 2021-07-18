@@ -1,2 +1,2 @@
-# progettino_c-
+# progettino_c++
 Inventario di un negozio 
